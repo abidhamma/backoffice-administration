@@ -1,7 +1,7 @@
 
 MAGOWARE is an IPTV/OTT solution for Pay Tv Businesses. The administration portal is build on Sequelize, Express, ng-admin, and Node.js
 
-### Installation
+### Installation Step By Step
 
 ### Before you start, make sure you have these prerequisites installed:
 
@@ -9,23 +9,73 @@ MAGOWARE is an IPTV/OTT solution for Pay Tv Businesses. The administration porta
  * NPM
 
 ### Follow these steps to install Magoware  Management System
+## Proceed by
+```
+sudo apt-get update
+sudo apt-get upgarde -y
+sudo apt-get install git -y
+```
 
+You can determine the CPU architecture of your server with these commands:
+```
+sudo getconf LONG_BIT
+sudo uname -p
+```
+
+The latter is shown below (Note: the specific Node.js version might be different for you) in this case i use 10.16.3:
 Download and install NODE JS from the following link:
 
 https://nodejs.org/en/download/
 
+```
+sudo wget https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz
+sudo apt-get install xz-utils
+tar -C /usr --strip-components 1 -xJf node-v10.16.3-linux-x64.tar.xz
+ls -l /usr/bin/node
+ls -l /usr/bin/npm
+```
+
+Install MySQL Server
+```
+sudo apt-get install mysql-server
+```
+# Follow instruction during mysql server installation.
+
+### Install NPM Package
+```
+npm install --save sequelize
+npm install --save mysql2
+```
+
 We recommend versions 7.x.x or 8.x.x installed for nodejs
 
-Download MAGOWARE Backoffice application from Github
-
-https://github.com/MAGOWARE/backoffice-administration.git
+### Download MAGOWARE Backoffice application from Github
+```
+sudo git clone https://github.com/MAGOWARE/backoffice-administration.git
+```
+Then
+```
+cd backoffice-administration
+```
 
 Run the following command within the root folder to install application libriaries:
 ```
 sudo npm install (in linux)
 npm install (in windows)
 ```
-Create a database on MySQL server.
+
+### Create a database on MySQL server.
+```
+mysql -u root -p
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'password';
+```
+To create a database user, type the following command. Replace username with the user you want to create, and replace password with the user's password then continue to create database for magoware
+
+```
+CREATE DATABASE dbname;
+exit;
+```
+Change dbname to your desire database name
 
 Make sure that the collation and charset of your schema supports the languages that you intend to use.
 
